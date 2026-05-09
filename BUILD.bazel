@@ -1,0 +1,45 @@
+load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
+load("@aspect_rules_js//npm:defs.bzl", "npm_package")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
+
+npm_link_all_packages(name = "node_modules")
+
+ts_project(
+    name = "telequick_ts",
+    srcs = glob(["src/**/*.ts", "src/**/*.tsx"]),
+    declaration = True,
+    transpiler = "tsc",
+    out_dir = "dist",
+    tsconfig = "tsconfig.json",
+    deps = [
+        ":node_modules/@types/node",
+        ":node_modules/@types/ws",
+        ":node_modules/@types/jsonwebtoken",
+        ":node_modules/ws",
+        ":node_modules/jsonwebtoken",
+        ":node_modules/@fails-components/webtransport",
+    ],
+    data = [
+        "//core:telequick_core",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+npm_package(
+    name = "telequick_javascript_sdk",
+    srcs = [
+        "package.json",
+        "README.md",
+        ":telequick_ts",
+    ],
+    package = "telequick-sdk",
+    visibility = ["//visibility:public"],
+)
+
+pkg_tar(
+    name = "telequick_javascript_distribution",
+    srcs = [":telequick_javascript_sdk"],
+    extension = "tgz",
+    visibility = ["//visibility:public"],
+)

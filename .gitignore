@@ -1,0 +1,19 @@
+# Bazel
+/bazel-*
+bazel-bin/
+bazel-out/
+bazel-testlogs/
+
+# OS / editor
+.DS_Store
+*.swp
+.vscode/
+.idea/
+# Node / TS
+node_modules/
+dist/
+*.tgz
+package-lock.json
+pnpm-lock.yaml
+# Test fixtures (generate locally; never commit real keys)
+dummy_sa.json

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeleQuick Web Demultiplexer Agent</title>
+    <style>
+        body { font-family: -apple-system, system-ui; background: #0f172a; color: #f8fafc; padding: 2rem; }
+        .dashboard { max-width: 800px; margin: 0 auto; background: #1e293b; padding: 2rem; border-radius: 12px; }
+        button { background: #3b82f6; color: white; border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #2563eb; }
+        #logs { margin-top: 1rem; background: #020617; padding: 1rem; border-radius: 6px; font-family: monospace; white-space: pre-wrap; height: 300px; overflow-y: scroll; }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <h2>TeleQuick Native Browser Agent</h2>
+        <p>Demonstrating Isomorphic QUIC WebTransport + WASM</p>
+        
+        <div>
+            <label>Pre-Signed JWT Token (From Backend):</label><br>
+            <textarea id="jwtBox" rows="3" style="width: 100%; border-radius: 4px; border: 1px solid #475569; background: #334155; color: white; padding: 8px;" placeholder="eyJhbG..."></textarea>
+        </div>
+        
+        <br>
+        <button id="startCallBtn">Dial + Stream Microphone natively</button>
+        
+        <div id="logs">System awaiting initialization...</div>
+    </div>
+
+    <script src="./browser_demo.js"></script>
+</body>
+</html>
